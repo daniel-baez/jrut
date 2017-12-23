@@ -32,6 +32,10 @@ project.ext.ghToken = project.hasProperty('ghToken') ? project.getProperty('ghTo
 semanticRelease {
     repo {
         ghToken = project.ghToken
+
+        releaseAsset jar
+        releaseAsset javadocJar
+        releaseAsset sourcesJar
     }
 }
 
