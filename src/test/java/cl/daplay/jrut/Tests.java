@@ -1,11 +1,8 @@
 package cl.daplay.jrut;
 
-import cl.daplay.jrut.JRut;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
