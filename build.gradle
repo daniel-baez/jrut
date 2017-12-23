@@ -10,8 +10,8 @@ buildscript {
 }
 
 apply plugin: 'java-library'
-apply plugin: 'de.gliderpilot.semantic-release'
 apply plugin: 'com.bmuschko.nexus'
+apply plugin: 'de.gliderpilot.semantic-release'
 
 group = "cl.daplay"
 description = "Rut implementation in Java"
@@ -29,13 +29,16 @@ dependencies {
 }
 
 project.ext.ghToken = project.hasProperty('ghToken') ? project.getProperty('ghToken') : System.getenv('GH_TOKEN') ?: null
-semanticRelease {
-    repo {
-        ghToken = project.ghToken
 
-        releaseAsset jar
-        releaseAsset javadocJar
-        releaseAsset sourcesJar
+project.afterEvaluate {
+    semanticRelease {
+        repo {
+            ghToken = project.ghToken
+
+            releaseAsset jar
+            releaseAsset sourcesJar
+            releaseAsset javadocJar
+        }
     }
 }
 
