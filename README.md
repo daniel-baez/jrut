@@ -17,14 +17,18 @@ It's Chile's SSN.
 
 The usual:
 
-```
-maven depedency
+```xml
+<dependency>
+   <groupId>cl.daplay</groupId>
+   <artifactId>jrut</artifactId>
+   <version>1.0.0</version>
+</dependency>
 ```
 
 or
 
-```
-gradle depedency
+```groovy
+compile "cl.daplay:jrut:1.0.0"
 ```
 
 and then...
