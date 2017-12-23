@@ -1,4 +1,4 @@
-# JRut
+# JRut ![travis-ci](https://travis-ci.org/daplay/jrut.svg?branch=master)
 
 A reasonable Rut implementation... in Java
 
