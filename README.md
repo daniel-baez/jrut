@@ -1,6 +1,6 @@
 # JRut
 
-A reasonable Rut implementation... in Java.
+A reasonable Rut implementation... in Java
 
 # What's a Rut anyway?
 
@@ -32,8 +32,23 @@ and then...
 ```java
 import cl.daplay.jrut.JRut;
 
-// throws IllegalArgumentException on invalid arguments
-final JRut rut = new JRut("6363525-5");
+// Handles multiple formats
+final JRut a = new JRut("5252856-9");
+final JRut b = new JRut("5.252.856-9");
+final JRut c = new JRut("52528569");
+
+// Throws IllegalArgumentException on invalid arguments
+try {
+    final JRut c = new JRut("5252856K");
+} catch (IllegalArgumentException ex) {
+    // ...
+}
+
+// Pretty print
+final JRut a = new JRut("52528569");
+// prints "5.252.856-9"
+System.out.println(a);
+
 ```
 
 # Building
