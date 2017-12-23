@@ -81,8 +81,8 @@ public final class JRut implements Comparable<JRut>, Serializable {
     }
 
     /**
-     * @param _number
-     * @return
+     * @param _number rut number
+     * @return dv for number
      */
     public static String dv(final String _number) {
         final String number = filter(_number);
@@ -112,8 +112,8 @@ public final class JRut implements Comparable<JRut>, Serializable {
     private final String toString;
 
     /**
-     * a Rut:
      *
+     * @param _rut * a Rut:
      * - 16.709.383-2
      * - 16,709,383-2
      * - 16709383-2
@@ -121,8 +121,6 @@ public final class JRut implements Comparable<JRut>, Serializable {
      * - 167093832
      * - 16709383k
      * - 16709383K
-     *
-     * @param _rut
      */
     public JRut(final String _rut) throws IllegalArgumentException {
         final String rut = filter(_rut);
@@ -143,7 +141,7 @@ public final class JRut implements Comparable<JRut>, Serializable {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public int compareTo(final JRut _other) {
         if (null == _other) {

@@ -1,4 +1,20 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'de.gliderpilot.gradle.semantic-release:gradle-semantic-release-plugin:1.3.1'
+        classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+    }
+}
+
 apply plugin: 'java-library'
+apply plugin: 'de.gliderpilot.semantic-release'
+apply plugin: 'com.bmuschko.nexus'
+
+group = "cl.daplay"
+description = "Rut implementation in Java"
 
 repositories {
     mavenCentral()
@@ -10,5 +26,35 @@ sourceCompatibility = 1.5
 
 dependencies {
     testImplementation 'junit:junit:4.12'
+}
+
+modifyPom {
+    project {
+
+        name project.name
+        description project.description
+        url 'https://github.com/daplay/jrut'
+
+        scm {
+            url 'https://github.com/daplay/jrut'
+            connection 'scm:https://github.com/daplay/jrut.git'
+            developerConnection 'scm:git://github.com/daplay/jrut.git'
+        }
+
+        licenses {
+            license {
+                name 'The Apache Software License, Version 2.0'
+                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+            }
+        }
+
+        developers {
+            developer {
+                id 'daplay'
+                name 'Daniel Meneses'
+                email 'daplay@gmail.com'
+            }
+        }
+    }
 }
 
