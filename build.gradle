@@ -28,6 +28,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
+project.ext.ghToken = project.hasProperty('ghToken') ? project.getProperty('ghToken') : System.getenv('GH_TOKEN') ?: null
+semanticRelease {
+    repo {
+        ghToken = project.ghToken
+    }
+}
+
 modifyPom {
     project {
 
