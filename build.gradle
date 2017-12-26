@@ -39,8 +39,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
+def versionPattern = /\d\.\d\.\d/
+
 task readmeUpdate {
-    def versionPattern = /\d\.\d\.\d/
     description = 'Updateso version in README.md'
 
     onlyIf {
