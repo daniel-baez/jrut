@@ -21,14 +21,14 @@ The usual:
 <dependency>
    <groupId>cl.daplay</groupId>
    <artifactId>jrut</artifactId>
-   <version>1.0.0</version>
+   <version>1.0.1</version>
 </dependency>
 ```
 
 or
 
 ```groovy
-compile "cl.daplay:jrut:1.0.0"
+compile "cl.daplay:jrut:1.0.1"
 ```
 
 and then...
@@ -38,7 +38,7 @@ import cl.daplay.jrut.JRut;
 
 // Handles multiple formats
 final JRut a = new JRut("5252856-9");
-final JRut b = new JRut("5.252.856-9");
+final JRut b = new JRut("1.0.1-9");
 final JRut c = new JRut("52528569");
 
 // Throws IllegalArgumentException on invalid arguments
@@ -50,7 +50,7 @@ try {
 
 // Pretty print
 final JRut a = new JRut("52528569");
-// prints "5.252.856-9"
+// prints "1.0.1-9"
 System.out.println(a);
 
 ```
