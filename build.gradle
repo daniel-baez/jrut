@@ -92,9 +92,15 @@ task release() {
     }
 }
 
+release.dependsOn build
 release.dependsOn readmeUpdate
-release.finalizedBy build
 release.finalizedBy uploadArchives
+
+readmeUpdate.mustRunAfter(build)
+
+// unused tasks by plugin Reckon
+project.tasks.remove(reckonTagCreate)
+project.tasks.remove(reckonTagPush)
 
 modifyPom {
     project {
