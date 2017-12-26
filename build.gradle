@@ -93,7 +93,7 @@ task release() {
 }
 
 release.dependsOn readmeUpdate
-release.dependsOn build
+release.finalizedBy build
 release.finalizedBy uploadArchives
 
 modifyPom {
