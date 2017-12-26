@@ -41,17 +41,22 @@ dependencies {
 
 task readmeUpdate {
     def versionPattern = /\d\.\d\.\d/
-    description = 'Updates version in README.md'
+    description = 'Updateso version in README.md'
 
-    def execute = !version.toString().contains("SNAPSHOT")
-    if (!execute) {
-        println "README.md won't be updated, as $version is an SNAPSHOT version"
-        return;
+    onlyIf {
+        def execute = !version.toString().contains("SNAPSHOT")
+        if (!execute) {
+            println "README.md won't be updated, as $version is an SNAPSHOT version"
+        }
+        return execute;
     }
 
-    if (!(version.toString() ==~ versionPattern)) {
-        println "README.md won't be updated, as $version is not a release version"
-        return;
+    onlyIf {
+        def execute = (!(version.toString() ==~ versionPattern))
+        if (!execute) {
+            println "README.md won't be updated, as $version is not a release version"
+        }
+        return execute;
     }
 
     // handle to README.md
@@ -72,17 +77,33 @@ task readmeUpdate {
 }
 
 task release() {
-    def execute = !version.toString().contains("SNAPSHOT")
-    if (!execute) {
-        def m = "Can't release version: $version, please use -Preckon.scope=<major|minor|patch> and -Preckon.snapshot=false to release"
-        throw new GradleException(m)
+    onlyIf {
+        def execute = !version.toString().contains("SNAPSHOT")
+        if (!execute) {
+            println "task Release, won't be executed, as $version is an SNAPSHOT version"
+        }
+        return execute;
+    }
+
+    onlyIf {
+        def execute = (!(version.toString() ==~ versionPattern))
+        if (!execute) {
+            println "task Release, won't be executed, as $version is an SNAPSHOT version"
+        }
+        return execute;
+    }
+
+    final String releaseName = "v${version}"
+    println "releasing: $releaseName"
+
+    doLast {
+        grgit.tag.add(name: version, message: version, annotate: true)
+        grgit.push(refsOrSpecs: "refs/tags/${releaseName}")
     }
 }
 
-release.dependsOn build
 release.dependsOn readmeUpdate
-release.dependsOn reckonTagCreate
-release.dependsOn reckonTagPush
+release.dependsOn build
 release.finalizedBy uploadArchives
 
 modifyPom {
