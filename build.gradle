@@ -87,7 +87,7 @@ task release() {
     println "releasing: $releaseName"
 
     doLast {
-        grgit.tag.add(name: version, message: version, annotate: true)
+        grgit.tag.add(name: releaseName, message: releaseName, annotate: true)
         grgit.push(refsOrSpecs: ["refs/tags/${releaseName}"])
     }
 }
