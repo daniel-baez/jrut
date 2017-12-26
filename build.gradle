@@ -39,25 +39,25 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
-def versionPattern = /\d\.\d\.\d/
+ext {
+    versionPattern = /\d+\.\d+\.\d+/
+}
+
+def requireReleaseVersion(alert = "") {
+    // execute if not snapshot and matches \d.\d.\d
+    def execute = !version.toString().contains("SNAPSHOT") && (version.toString() ==~ versionPattern)
+    if (!execute && alert) {
+        println alert
+    }
+    return execute;
+}
 
 task readmeUpdate {
     description = 'Updateso version in README.md'
 
     onlyIf {
-        def execute = !version.toString().contains("SNAPSHOT")
-        if (!execute) {
-            println "README.md won't be updated, as $version is an SNAPSHOT version"
-        }
-        return execute;
-    }
-
-    onlyIf {
-        def execute = (!(version.toString() ==~ versionPattern))
-        if (!execute) {
-            println "README.md won't be updated, as $version is not a release version"
-        }
-        return execute;
+        def alert = "README.md won't be updated, as $version is an SNAPSHOT version"
+        return requireReleaseVersion(alert)
     }
 
     // handle to README.md
@@ -79,19 +79,8 @@ task readmeUpdate {
 
 task release() {
     onlyIf {
-        def execute = !version.toString().contains("SNAPSHOT")
-        if (!execute) {
-            println "task Release, won't be executed, as $version is an SNAPSHOT version"
-        }
-        return execute;
-    }
-
-    onlyIf {
-        def execute = (!(version.toString() ==~ versionPattern))
-        if (!execute) {
-            println "task Release, won't be executed, as $version is an SNAPSHOT version"
-        }
-        return execute;
+        def alert = "task Release, won't be executed, as $version is an SNAPSHOT version"
+        return requireReleaseVersion(alert)
     }
 
     final String releaseName = "v${version}"
@@ -99,7 +88,7 @@ task release() {
 
     doLast {
         grgit.tag.add(name: version, message: version, annotate: true)
-        grgit.push(refsOrSpecs: "refs/tags/${releaseName}")
+        grgit.push(refsOrSpecs: ["refs/tags/${releaseName}"])
     }
 }
 
