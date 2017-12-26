@@ -21,14 +21,14 @@ The usual:
 <dependency>
    <groupId>cl.daplay</groupId>
    <artifactId>jrut</artifactId>
-   <version>1.0.0</version>
+   <version>1.0.1</version>
 </dependency>
 ```
 
 or
 
 ```groovy
-compile "cl.daplay:jrut:1.0.0"
+compile "cl.daplay:jrut:1.0.1"
 ```
 
 and then...
