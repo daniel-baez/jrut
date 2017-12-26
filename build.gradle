@@ -67,7 +67,7 @@ task readmeUpdate {
     doLast {
         grgit.add(patterns: ['README.md'])
         grgit.commit(message: "chore(README.md) releases version: '${version.toString()}'.")
-        grgit.push
+        grgit.push()
     }
 }
 
