@@ -50,7 +50,7 @@ try {
 
 // Pretty print
 final JRut a = new JRut("52528569");
-// prints "1.0.1-9"
+// prints "5.252.856-9"
 System.out.println(a);
 
 ```
