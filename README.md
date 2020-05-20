@@ -6,10 +6,16 @@ A reasonable Rut implementation... in Java
 
 It's Chile's SSN.
 
+# What's reasonable?
+
+- **Comparable** instances of JRut have a "natural order" and implement `.equals` as expected
+- **Serializable** instances of JRut can be serialized out of the box
+- **Immutable** instances of JRut can be used in multi-threaded code without problems =]
+- **Validated** Chile's SSN integrates a validation that's also taken care of
+
 # Why make a library out of this?
 
-- Its format implicitly allows for a tiny validation.
-- An open source should, in time, provide a reasonable set of tests.
+- An open source library, should, in time, provide a reasonable set of tests.
 - Low compatibility (Java 5).
 - No dependencies.
 
@@ -50,7 +56,7 @@ try {
 
 // Pretty print
 final JRut a = new JRut("52528569");
-// prints "1.0.1-9"
+// prints "5.252.856-9"
 System.out.println(a);
 
 ```
