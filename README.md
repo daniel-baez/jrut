@@ -8,7 +8,7 @@ It's Chile's SSN.
 
 # Why make a library out of this?
 
-- It's format implicitly allows for a tiny validation.
+- Its format implicitly allows for a tiny validation.
 - An open source should, in time, provide a reasonable set of tests.
 - Low compatibility (Java 5).
 - No dependencies.
